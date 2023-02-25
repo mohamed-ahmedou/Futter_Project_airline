@@ -83,30 +83,55 @@ class HomeScreen extends StatelessWidget {
           ),
           const Gap(15),
           SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(left: 20),
-            child: Row(
-                children: ticketList
-                    .map((singleTicket) => TicketView(ticket: singleTicket))
-                    .toList()),
-          ),
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.only(left: 20),
+              child: FutureBuilder<List<Map<String, dynamic>>>(
+                future: fetchdatatest(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done &&
+                      snapshot.hasData) {
+                    return Row(
+                      children: snapshot.data!
+                          .map((singleTicket) =>
+                              TicketView(ticket: singleTicket))
+                          .toList(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('Failed to load data');
+                  } else {
+                    return CircularProgressIndicator();
+                  }
+                },
+              )),
           const Gap(15),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: const AppDoubleTextWidget(
-              bigText: 'Hotels',
+              bigText: 'Active Arienne',
               smallText: 'Voir Tout',
             ),
           ),
           const Gap(15),
           SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(left: 20),
-            child: Row(
-                children: hotelList
-                    .map((singleHotel) => HotelScreen(hotel: singleHotel))
-                    .toList()),
-          ),
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.only(left: 20),
+              child: FutureBuilder<List<Map<String, dynamic>>>(
+                future: fetchactive(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Row(
+                        children: snapshot.data!
+                            .map((singleHotel) =>
+                                HotelScreen(hotel: singleHotel))
+                            .toList());
+                  } else if (snapshot.hasError) {
+                    print('erreur de load data active');
+                  } else {
+                    return CircularProgressIndicator();
+                  }
+                  return CircularProgressIndicator();
+                },
+              )),
           Container(
               width: 400,
               height: 400,

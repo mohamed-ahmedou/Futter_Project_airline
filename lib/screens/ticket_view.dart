@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -38,7 +37,7 @@ class TicketView extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        ticket['from']['code'],
+                        ticket['from']['code'] ?? '',
                         style: isColor == null
                             ? Styles.headLineStyle3
                                 .copyWith(color: Colors.white)
@@ -96,7 +95,7 @@ class TicketView extends StatelessWidget {
                       ThickContainer(isColor: isColor),
                       Expanded(child: Container()),
                       Text(
-                        ticket['to']['code'],
+                        ticket['to']['code'] ?? '',
                         style: isColor == null
                             ? Styles.headLineStyle3
                                 .copyWith(color: Colors.white)
@@ -111,7 +110,7 @@ class TicketView extends StatelessWidget {
                       SizedBox(
                         width: 100,
                         child: Text(
-                          ticket['from']['name'],
+                          ticket['from']['name'] ?? '',
                           style: isColor == null
                               ? Styles.headLineStyle4
                                   .copyWith(color: Colors.white)
@@ -119,7 +118,7 @@ class TicketView extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        ticket['flying_time'],
+                        ticket['flying_time'] ?? '',
                         style: isColor == null
                             ? Styles.headLineStyle3
                                 .copyWith(color: Colors.white)
@@ -128,7 +127,7 @@ class TicketView extends StatelessWidget {
                       SizedBox(
                         width: 80,
                         child: Text(
-                          ticket['to']['name'],
+                          ticket['to']['name'] ?? '',
                           textAlign: TextAlign.end,
                           style: isColor == null
                               ? Styles.headLineStyle4
@@ -162,7 +161,9 @@ class TicketView extends StatelessWidget {
                   Expanded(
                       child: Padding(
                     padding: EdgeInsets.all(12.0),
-                    child: AppLayoutBuilderWidget(sections: 6,),
+                    child: AppLayoutBuilderWidget(
+                      sections: 6,
+                    ),
                   )),
                   SizedBox(
                     height: 20,
@@ -189,30 +190,40 @@ class TicketView extends StatelessWidget {
               ),
               padding: const EdgeInsets.only(
                   left: 16, top: 10, right: 16, bottom: 16),
-              child: Column(children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AppColumnLayout(
-                        firstText: ticket['date'],
-                        secondText: 'Date',
-                        alignment: CrossAxisAlignment.start, isColor: isColor,),
-
-                    AppColumnLayout(
-                      firstText: ticket['departure_time'],
-                      secondText: "Heure de départ",
-                      alignment: CrossAxisAlignment.center, isColor: isColor,),
-
-                    AppColumnLayout(
-                      firstText:  '${ticket['number']}',
-                      secondText: "Nomber",
-                      alignment: CrossAxisAlignment.end, isColor: isColor,),
-
-
-
-                  ],
-                )
-              ]),
+              child: SingleChildScrollView(
+                child: SingleChildScrollView(
+                  child: Column(children: [
+                    SingleChildScrollView(
+                      child: SingleChildScrollView(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AppColumnLayout(
+                              firstText: ticket['date'] ?? '',
+                              secondText: 'Date',
+                              alignment: CrossAxisAlignment.start,
+                              isColor: isColor,
+                            ),
+                            AppColumnLayout(
+                              firstText: ticket['departure_time'] ?? '',
+                              secondText: "Heure de départ",
+                              alignment: CrossAxisAlignment.center,
+                              isColor: isColor,
+                            ),
+                            AppColumnLayout(
+                              firstText: ticket['number'] ??
+                                  '', //'${ticket['number']}'
+                              secondText: "Nomber",
+                              alignment: CrossAxisAlignment.end,
+                              isColor: isColor,
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ]),
+                ),
+              ),
             ),
           ],
         ),
