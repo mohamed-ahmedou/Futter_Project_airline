@@ -18,7 +18,7 @@ class ListStatistique {
         PieChartSectionData(
           color: Colors.red,
           value: retard.toDouble(),
-          title: '${((retard * 100) / (total)).toStringAsFixed(1)}%',
+          title: '${((retard * 100) / (total)).toStringAsFixed(2)}%',
           radius: 50,
           titleStyle: TextStyle(
             fontSize: 16,
@@ -29,7 +29,7 @@ class ListStatistique {
         PieChartSectionData(
           color: Colors.green,
           value: non_retard.toDouble(),
-          title: '${((non_retard * 100) / (total)).toStringAsFixed(1)}%',
+          title: '${((non_retard * 100) / (total)).toStringAsFixed(2)}%',
           radius: 50,
           titleStyle: TextStyle(
             fontSize: 16,

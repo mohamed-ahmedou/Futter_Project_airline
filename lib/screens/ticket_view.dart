@@ -20,212 +20,217 @@ class TicketView extends StatelessWidget {
       height: AppLayout.getHeight(190),
       child: Container(
         margin: EdgeInsets.only(right: AppLayout.getWidth(16)),
-        child: Column(
-          children: [
-            //showing the blue part of the ticket
-            Container(
-              decoration: BoxDecoration(
-                color: isColor == null ? const Color(0xFF526799) : Colors.white,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(21),
-                  topRight: Radius.circular(21),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              //showing the blue part of the ticket
+              Container(
+                decoration: BoxDecoration(
+                  color:
+                      isColor == null ? const Color(0xFF526799) : Colors.white,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(21),
+                    topRight: Radius.circular(21),
+                  ),
                 ),
-              ),
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        ticket['from']['code'] ?? '',
-                        style: isColor == null
-                            ? Styles.headLineStyle3
-                                .copyWith(color: Colors.white)
-                            : Styles.headLineStyle3,
-                      ),
-                      Expanded(child: Container()),
-                      ThickContainer(
-                        isColor: isColor,
-                      ),
-                      Expanded(
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                              height: 24,
-                              child: LayoutBuilder(
-                                builder: (BuildContext context,
-                                    BoxConstraints constraints) {
-                                  return Flex(
-                                    direction: Axis.horizontal,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: List.generate(
-                                      (constraints.constrainWidth() / 6)
-                                          .floor(),
-                                      (index) => SizedBox(
-                                        width: 3,
-                                        height: 1,
-                                        child: DecoratedBox(
-                                          decoration: BoxDecoration(
-                                              color: isColor == null
-                                                  ? Colors.white
-                                                  : Colors.grey.shade300),
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          ticket['from']['code'] ?? '',
+                          style: isColor == null
+                              ? Styles.headLineStyle3
+                                  .copyWith(color: Colors.white)
+                              : Styles.headLineStyle3,
+                        ),
+                        Expanded(child: Container()),
+                        ThickContainer(
+                          isColor: isColor,
+                        ),
+                        Expanded(
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                height: 24,
+                                child: LayoutBuilder(
+                                  builder: (BuildContext context,
+                                      BoxConstraints constraints) {
+                                    return Flex(
+                                      direction: Axis.horizontal,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: List.generate(
+                                        (constraints.constrainWidth() / 6)
+                                            .floor(),
+                                        (index) => SizedBox(
+                                          width: 3,
+                                          height: 1,
+                                          child: DecoratedBox(
+                                            decoration: BoxDecoration(
+                                                color: isColor == null
+                                                    ? Colors.white
+                                                    : Colors.grey.shade300),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                            Center(
-                              child: Transform.rotate(
-                                angle: 1.6,
-                                child: Icon(
-                                  Icons.local_airport_rounded,
-                                  color: isColor == null
-                                      ? Colors.white
-                                      : const Color(0xff8accf7),
+                                    );
+                                  },
                                 ),
                               ),
-                            ),
-                          ],
+                              Center(
+                                child: Transform.rotate(
+                                  angle: 1.6,
+                                  child: Icon(
+                                    Icons.local_airport_rounded,
+                                    color: isColor == null
+                                        ? Colors.white
+                                        : const Color(0xff8accf7),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      ThickContainer(isColor: isColor),
-                      Expanded(child: Container()),
-                      Text(
-                        ticket['to']['code'] ?? '',
-                        style: isColor == null
-                            ? Styles.headLineStyle3
-                                .copyWith(color: Colors.white)
-                            : Styles.headLineStyle3,
-                      ),
-                    ],
-                  ),
-                  const Gap(3),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: 100,
-                        child: Text(
-                          ticket['from']['name'] ?? '',
+                        ThickContainer(isColor: isColor),
+                        Expanded(child: Container()),
+                        Text(
+                          ticket['to']['code'] ?? '',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: isColor == null
-                              ? Styles.headLineStyle4
+                              ? Styles.headLineStyle3
                                   .copyWith(color: Colors.white)
-                              : Styles.headLineStyle4,
+                              : Styles.headLineStyle3,
                         ),
-                      ),
-                      Text(
-                        ticket['flying_time'] ?? '',
-                        style: isColor == null
-                            ? Styles.headLineStyle3
-                                .copyWith(color: Colors.white)
-                            : Styles.headLineStyle3,
-                      ),
-                      SizedBox(
-                        width: 80,
-                        child: Text(
-                          ticket['to']['name'] ?? '',
-                          textAlign: TextAlign.end,
+                      ],
+                    ),
+                    const Gap(3),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 100,
+                          child: Text(
+                            ticket['from']['name'] ?? '',
+                            style: isColor == null
+                                ? Styles.headLineStyle4
+                                    .copyWith(color: Colors.white)
+                                : Styles.headLineStyle4,
+                          ),
+                        ),
+                        Text(
+                          ticket['flying_time'] ?? '',
                           style: isColor == null
-                              ? Styles.headLineStyle4
+                              ? Styles.headLineStyle3
                                   .copyWith(color: Colors.white)
-                              : Styles.headLineStyle4,
+                              : Styles.headLineStyle3,
                         ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-
-            //showing the orange part of the ticket
-            Container(
-              color: isColor == null ? Styles.orangeColor : Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  SizedBox(
-                    height: 20,
-                    width: 10,
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10))),
-                    ),
-                  ),
-                  Expanded(
-                      child: Padding(
-                    padding: EdgeInsets.all(12.0),
-                    child: AppLayoutBuilderWidget(
-                      sections: 6,
-                    ),
-                  )),
-                  SizedBox(
-                    height: 20,
-                    width: 10,
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              bottomLeft: Radius.circular(10))),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            //bottom part of orange part
-            Container(
-              decoration: BoxDecoration(
-                color: isColor == null ? Styles.orangeColor : Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(isColor == null ? 21 : 0),
-                  bottomRight: Radius.circular(isColor == null ? 21 : 0),
+                        SizedBox(
+                          width: 80,
+                          child: Text(
+                            ticket['to']['name'] ?? '',
+                            textAlign: TextAlign.end,
+                            style: isColor == null
+                                ? Styles.headLineStyle4
+                                    .copyWith(color: Colors.white)
+                                : Styles.headLineStyle4,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
               ),
-              padding: const EdgeInsets.only(
-                  left: 16, top: 10, right: 16, bottom: 16),
-              child: SingleChildScrollView(
+
+              //showing the orange part of the ticket
+              Container(
+                color: isColor == null ? Styles.orangeColor : Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    SizedBox(
+                      height: 20,
+                      width: 10,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomRight: Radius.circular(10))),
+                      ),
+                    ),
+                    Expanded(
+                        child: Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: AppLayoutBuilderWidget(
+                        sections: 6,
+                      ),
+                    )),
+                    SizedBox(
+                      height: 20,
+                      width: 10,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                bottomLeft: Radius.circular(10))),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              //bottom part of orange part
+              Container(
+                decoration: BoxDecoration(
+                  color: isColor == null ? Styles.orangeColor : Colors.white,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(isColor == null ? 21 : 0),
+                    bottomRight: Radius.circular(isColor == null ? 21 : 0),
+                  ),
+                ),
+                padding: const EdgeInsets.only(
+                    left: 16, top: 10, right: 16, bottom: 16),
                 child: SingleChildScrollView(
                   child: Column(children: [
                     SingleChildScrollView(
-                      child: SingleChildScrollView(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            AppColumnLayout(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: AppColumnLayout(
                               firstText: ticket['date'] ?? '',
                               secondText: 'Date',
                               alignment: CrossAxisAlignment.start,
                               isColor: isColor,
                             ),
-                            AppColumnLayout(
+                          ),
+                          Expanded(
+                            child: AppColumnLayout(
                               firstText: ticket['departure_time'] ?? '',
                               secondText: "Heure de départ",
                               alignment: CrossAxisAlignment.center,
                               isColor: isColor,
                             ),
-                            AppColumnLayout(
-                              firstText: ticket['number'] ??
-                                  '', //'${ticket['number']}'
-                              secondText: "Nomber",
-                              alignment: CrossAxisAlignment.end,
-                              isColor: isColor,
-                            ),
-                          ],
-                        ),
+                          ),
+                          AppColumnLayout(
+                            firstText:
+                                ticket['number'] ?? '', //'${ticket['number']}'
+                            secondText: "Nomber",
+                            alignment: CrossAxisAlignment.end,
+                            isColor: isColor,
+                          ),
+                        ],
                       ),
                     )
                   ]),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

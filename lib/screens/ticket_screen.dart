@@ -31,7 +31,10 @@ class TicketScreen extends StatelessWidget {
                 style: Styles.headLineStyle1,
               ),
               Gap(AppLayout.getHeight(20)),
-              const AppTicketTabs(firstTab: 'A venir', secondTab: 'Précédent'),
+              const AppTicketTabs(
+                firstTab: 'A venir',
+              ),
+              //  secondTab: 'Précédent'
               Gap(AppLayout.getHeight(20)),
               Container(
                 padding: EdgeInsets.only(left: AppLayout.getHeight(15)),

@@ -1,3 +1,4 @@
+import 'package:airline/screens/skeleton.dart';
 import 'package:airline/screens/ticket_view.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                         // ),
                         const Gap(5),
                         Text(
-                          'Vols-Hotels',
+                          'Vols-Avion',
                           style: Styles.headLineStyle1,
                         ),
                       ],
@@ -99,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                   } else if (snapshot.hasError) {
                     return Text('Failed to load data');
                   } else {
-                    return CircularProgressIndicator();
+                    return Skeleton();
                   }
                 },
               )),
@@ -127,9 +128,9 @@ class HomeScreen extends StatelessWidget {
                   } else if (snapshot.hasError) {
                     print('erreur de load data active');
                   } else {
-                    return CircularProgressIndicator();
+                    return Skeleton();
                   }
-                  return CircularProgressIndicator();
+                  return Skeleton();
                 },
               )),
           Container(
@@ -150,10 +151,8 @@ class HomeScreen extends StatelessWidget {
                     );
                   } else if (snapshot.hasError) {
                     print('erreur');
-                  } else {
-                    return CircularProgressIndicator();
                   }
-                  return CircularProgressIndicator();
+                  return Skeleton();
                 },
               )),
           // ListTile(

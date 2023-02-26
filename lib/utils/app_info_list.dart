@@ -43,7 +43,7 @@ List<Map<String, dynamic>> hotelList = [
   },
 ];
 Future<List<Map<String, dynamic>>> fetchdatatest() async {
-  final response = await http.get(Uri.parse(urlapi + 'pro/mauritanie'));
+  final response = await http.get(Uri.parse(urlapi + '/pro/mauritanie'));
   if (response.statusCode == 200) {
     final List<dynamic> responseData = jsonDecode(response.body);
     final List<Map<String, dynamic>> data = responseData

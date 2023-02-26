@@ -28,7 +28,7 @@ class SearchScreen extends StatelessWidget {
           Gap(AppLayout.getHeight(20)),
           const AppTicketTabs(
             firstTab: "Tickets d'avion",
-            secondTab: 'Hotels',
+            // secondTab: 'Hotels',
           ),
           Gap(AppLayout.getHeight(25)),
           const AppIconText(icon: Icons.flight_takeoff_rounded, text: 'Départ'),

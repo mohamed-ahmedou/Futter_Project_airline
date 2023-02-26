@@ -32,7 +32,8 @@ def CountryTeritoire(request):
 
 @api_view(['GET'])
 def stat(request):
-    retared = 300
+    retared = 330   
     non_retart = 400
+    
     total = retared + non_retart
     return Response({"retard":retared,"non_retard":non_retart, 'total':total})
